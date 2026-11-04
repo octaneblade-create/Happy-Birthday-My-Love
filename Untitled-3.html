@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How Lovely That You Arrived</title>
+  <style>
+    :root{--ink:#514a5b;--muted:#898292;--rose:#d58fa4;--paper:#fffdfb}
+    *{box-sizing:border-box}
+    body{margin:0;color:var(--ink);background:linear-gradient(180deg,#fff8f5,#fbf8ff 55%,#f7fbf8);font-family:"Avenir Next",Avenir,"Segoe UI",sans-serif}
+    .flower-rain{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+    .flower{position:absolute;top:-2rem;left:var(--left);font-size:var(--size);opacity:0;animation:flower-fall var(--duration) linear var(--delay) infinite;filter:drop-shadow(0 2px 3px #c49bb333)}
+    @keyframes flower-fall{0%{transform:translate3d(0,-5vh,0) rotate(0deg);opacity:0}10%{opacity:.58}90%{opacity:.48}100%{transform:translate3d(var(--drift),110vh,0) rotate(360deg);opacity:0}}
+    .page{position:relative;z-index:1}
+    @media(prefers-reduced-motion:reduce){.flower{animation:none;display:none}}
+    .page{width:min(900px,calc(100% - 36px));margin:auto;padding:62px 0 76px}
+    .hero{text-align:center;max-width:620px;margin:0 auto 55px}
+    .eyebrow{color:#a47994;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;font-weight:700}
+    h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(2.7rem,7vw,4.6rem);line-height:1.05;margin:15px 0}
+    h1 span{color:#cc8fa6;font-style:italic}.intro{color:var(--muted);font-size:1.03rem;line-height:1.75;margin:0}.hearts{color:var(--rose);margin-top:22px}
+    .timeline{position:relative;display:grid;grid-template-columns:1fr 68px 1fr;row-gap:24px;align-items:center}
+    .timeline:before{content:"";position:absolute;left:50%;top:12px;bottom:12px;width:2px;transform:translateX(-50%);background:repeating-linear-gradient(to bottom,#dfcfe2 0 7px,transparent 7px 14px)}
+    .moment{position:relative;z-index:1;grid-column:1;justify-self:end;width:min(100%,340px)}.moment.right{grid-column:3;justify-self:start}
+    .dot{position:absolute;z-index:2;left:calc(100% + 22px);top:50%;width:24px;height:24px;border-radius:50%;background:white;border:6px solid #dfbfd0;transform:translateY(-50%);box-shadow:0 2px 10px #cbb6cd55}.right .dot{left:auto;right:calc(100% + 22px);border-color:#c8b9df}
+    .photo-card{padding:10px;border-radius:20px;background:var(--paper);border:1px solid #f0e9ed;box-shadow:0 12px 32px #66546b12;transform:rotate(-1.4deg);transition:.2s}.right .photo-card{transform:rotate(1.4deg)}.photo-card:hover{transform:rotate(0) translateY(-3px);box-shadow:0 16px 36px #66546b1c}
+    .photo-space{position:relative;display:grid;place-items:center;min-height:210px;overflow:hidden;border-radius:13px;background:linear-gradient(135deg,#f9e6e8,#eee8f7 55%,#e8f1eb)}
+    .photo-space:before,.photo-space:after{content:"✿";position:absolute;color:#fff9;font-size:2rem;pointer-events:none}.photo-space:before{top:15px;left:18px}.photo-space:after{right:20px;bottom:12px;font-size:1.5rem}
+    .photo-space img{display:none;width:100%;height:240px;object-fit:cover}.upload-label{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px;color:#89788f;font-size:.87rem;cursor:pointer;padding:20px;text-align:center}.upload-label b{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#fff9;color:#ad83a1;font-size:1.3rem;font-weight:400}.upload-label input{position:absolute;width:1px;height:1px;opacity:0}
+    .caption{padding:12px 8px 3px;color:#827788;font-family:Georgia,serif;font-size:.95rem;text-align:center}.quote{grid-column:1/4;justify-self:center;width:min(440px,90%);position:relative;z-index:1;padding:15px 24px;text-align:center;color:#8c758d;font-family:Georgia,serif;font-size:1.12rem;font-style:italic;line-height:1.55}.quote:before{content:"“";color:#d8b6c8}.quote:after{content:"”";color:#d8b6c8}
+    .ending{text-align:center;margin:55px auto 0;color:#8c7e91;font-family:Georgia,serif;font-style:italic;font-size:1.15rem}.ending span{display:block;color:var(--rose);font-size:1.45rem;margin-top:10px}
+    .next-page{display:block;width:max-content;margin:22px auto 0;padding:12px 22px;border:1px solid #e6cbd8;border-radius:999px;background:#fffdfb;color:#9a718b;text-decoration:none;font-family:Georgia,serif;font-size:1rem;box-shadow:0 5px 16px #66546b12;transition:.2s}.next-page:hover{background:#fff5f7;transform:translateY(-2px);box-shadow:0 8px 20px #66546b1c}.next-page:focus-visible{outline:2px solid #cc8fa6;outline-offset:3px}
+    @media(max-width:620px){.page{padding-top:42px}.hero{margin-bottom:38px}.timeline{grid-template-columns:30px 1fr;row-gap:20px}.timeline:before{left:14px}.moment,.moment.right{grid-column:2;justify-self:stretch;width:100%}.dot,.right .dot{left:-27px;right:auto;width:20px;height:20px;border-width:5px}.photo-card,.right .photo-card{transform:none}.photo-space{min-height:190px}.photo-space img{height:220px}.quote{grid-column:2;width:100%;padding:12px 8px}}
+  </style>
+</head>
+<body>
+  <div class="flower-rain" aria-hidden="true"></div>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">a little something for you</div>
+      <h1>How lovely that<br><span>you arrived.</span></h1>
+      <p class="intro">Some people come into your life and make the ordinary feel a little more like magic. This is a tiny place to celebrate you—and all the moments still waiting for us.</p>
+      <div class="hearts" aria-hidden="true">♡ &nbsp; ✧ &nbsp; ♡</div>
+    </header>
+    <section class="timeline" aria-label="A collection of favorite memories">
+      <article class="moment left"><span class="dot" aria-hidden="true"></span><div class="photo-card"><div class="photo-space"><img src= "IMG-20261007-WA0003.jpg" alt="Your first favorite memory" style="display:block; width:100%; height:240px; object-fit:cover;"></div><div class="caption">The Beginning Of A Lovely Thing</div></div></article>
+      <p class="quote">I didn’t know my days were missing a little sparkle until you showed up.</p>
+      <article class="moment right"><span class="dot" aria-hidden="true"></span><div class="photo-card"><div class="photo-space"><img src="IMG_20260123_213822_734.jpg" alt="A sweet shared moment" style="display:block; width:100%; height:240px; object-fit:cover;"></div><div class="caption">I Mean Look At Her</div></div></article>
+      <p class="quote">You feel like the person i wouldnt mind spending my alone time with .</p>
+      <article class="moment left"><span class="dot" aria-hidden="true"></span><div class="photo-card"><div class="photo-space"><img src="IMG_20261010_104018_558.jpg" alt="A moment that makes you smile" style="display:block; width:100%; height:240px; object-fit:cover;"></div><div class="caption">Proof That Joy Looks Good On You</div></div></article>
+      <p class="quote">Here’s to all the little things that somehow became our things.</p>
+      <article class="moment right"><span class="dot" aria-hidden="true"></span><div class="photo-card"><div class="photo-space"><img src="843264038_1659338989195714_5226822528256322724_n.jpg" alt="A favorite memory together" style="display:block; width:100%; height:240px; object-fit:cover;"><div class="caption">One More Moment To Treasure</div></div></article>
+    </section>
+    <footer class="ending">Glad our paths found each others.<span>♡</span></footer>
+    <a class="next-page" href="Untitled-4.html">Continue the story&nbsp; →</a>
+  </main>
+  <script>
+    const flowerRain=document.querySelector('.flower-rain');
+    for(let i=0;i<18;i++){
+      const flower=document.createElement('span');
+      flower.className='flower';
+      flower.textContent=['✿','❀','✽'][i%3];
+      flower.style.setProperty('--left',`${Math.random()*100}%`);
+      flower.style.setProperty('--size',`${12+Math.random()*12}px`);
+      flower.style.setProperty('--duration',`${9+Math.random()*11}s`);
+      flower.style.setProperty('--delay',`${-Math.random()*20}s`);
+      flower.style.setProperty('--drift',`${Math.random()*100-50}px`);
+      flowerRain.appendChild(flower);
+    }
+    const photoInputs=[...document.querySelectorAll('.upload-label input')];
+    const photoDB=new Promise((resolve,reject)=>{const request=indexedDB.open('lovely-memories',1);request.onupgradeneeded=()=>request.result.createObjectStore('photos');request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error)});
+    function showPhoto(input,file){
+      const space=input.closest('.photo-space');
+      const image=space.querySelector('img');
+      const label=input.closest('.upload-label');
+      image.src=URL.createObjectURL(file);
+      image.style.display='block';
+      label.style.display='none';
+    }
+    photoInputs.forEach((input,index)=>{
+      photoDB.then(db=>{const request=db.transaction('photos').objectStore('photos').get(index);request.onsuccess=()=>{if(request.result)showPhoto(input,request.result)}}).catch(()=>{});
+      input.addEventListener('change',async()=>{const file=input.files&&input.files[0];if(!file)return;showPhoto(input,file);try{const db=await photoDB;db.transaction('photos','readwrite').objectStore('photos').put(file,index)}catch(error){console.error('Could not save photo:',error)}})
+    });
+  </script>
+</body>
+</html>
