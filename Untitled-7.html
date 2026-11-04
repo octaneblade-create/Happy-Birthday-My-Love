@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Petal Drift</title>
+	<style>
+		* { box-sizing: border-box; }
+		html, body { width: 100%; height: 100%; margin: 0; }
+		body {
+			overflow: hidden;
+			background: linear-gradient(145deg, #fffafa, #fff0f4 52%, #fff8f8);
+			position: relative;
+		}
+		.petals { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+		.petal {
+			--size: 18px;
+			position: absolute;
+			top: -12vh;
+			left: var(--left);
+			width: var(--size);
+			height: calc(var(--size) * 1.48);
+			border-radius: 80% 8% 72% 18%;
+			background: linear-gradient(145deg, #f8a0b7 8%, #d63868 76%);
+			opacity: var(--opacity, .75);
+			filter: drop-shadow(0 5px 8px #b41f4b24);
+			transform: rotate(35deg);
+			animation: drift var(--duration) linear var(--delay) infinite;
+		}
+		.petal:nth-child(3n) { background: linear-gradient(145deg, #ed7898, #c82457); }
+		.petal:nth-child(3n + 1) { border-radius: 75% 15% 80% 12%; }
+		.message {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 1;
+			max-width: min(90vw, 900px);
+			font-size: clamp(2rem, 5vw, 4.5rem);
+			line-height: 1.08;
+			font-weight: 900;
+			letter-spacing: 0.06em;
+			text-transform: none;
+			text-align: center;
+			color: #7d1734;
+			text-shadow: 0 4px 16px rgba(167, 40, 88, 0.18);
+		}
+		@keyframes drift {
+			0% { transform: translate3d(0, -12vh, 0) rotate(25deg); }
+			25% { transform: translate3d(7vw, 25vh, 0) rotate(150deg); }
+			50% { transform: translate3d(-5vw, 52vh, 0) rotate(270deg); }
+			75% { transform: translate3d(8vw, 80vh, 0) rotate(390deg); }
+			100% { transform: translate3d(-3vw, 115vh, 0) rotate(525deg); }
+		}
+		@media (prefers-reduced-motion: reduce) {
+			.petal { animation-duration: 30s; }
+		}
+	</style>
+</head>
+<body>
+	<div class="petals" aria-hidden="true">
+		<i class="petal" style="--left:4%;--size:22px;--duration:13s;--delay:-8s"></i>
+		<i class="petal" style="--left:13%;--size:34px;--duration:18s;--delay:-14s;--opacity:.58"></i>
+		<i class="petal" style="--left:22%;--size:18px;--duration:12s;--delay:-3s"></i>
+		<i class="petal" style="--left:31%;--size:29px;--duration:16s;--delay:-11s;--opacity:.68"></i>
+		<i class="petal" style="--left:41%;--size:24px;--duration:14s;--delay:-6s"></i>
+		<i class="petal" style="--left:51%;--size:38px;--duration:19s;--delay:-16s;--opacity:.55"></i>
+		<i class="petal" style="--left:61%;--size:20px;--duration:13s;--delay:-9s"></i>
+		<i class="petal" style="--left:70%;--size:31px;--duration:17s;--delay:-4s;--opacity:.66"></i>
+		<i class="petal" style="--left:80%;--size:25px;--duration:15s;--delay:-12s"></i>
+		<i class="petal" style="--left:91%;--size:36px;--duration:18s;--delay:-7s;--opacity:.6"></i>
+		<i class="petal" style="--left:98%;--size:19px;--duration:12s;--delay:-10s"></i>
+	</div>
+	<div class="message" aria-label="Dont We Think This Deserves A Kiss">Dont We Think This Deserves A Kiss 😉</div>
+</body>
+</html>

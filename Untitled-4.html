@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff7fa" />
+  <title>Petal &amp; Pearl</title>
+  <style>
+    :root {
+      --pink: #f4b8ca;
+      --pink-deep: #d97998;
+      --ink: #382832;
+      --paper: #fffafc;
+    }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      background-image: url("C:\\Users\\octan\\OneDrive\\Desktop\\Birthday Code\\images.jpg"); /* Change to your image path */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 20% 30%, rgba(255, 255, 255, .96) 0%, rgba(255, 255, 255, 0) 58%),
+        linear-gradient(110deg, #fff9fb 0%, #fff4f7 42%, #fceaf0 100%);
+      font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+    }
+
+    .petal-field {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .petal {
+      position: absolute;
+      top: -12vh;
+      left: var(--left);
+      width: var(--size);
+      height: calc(var(--size) * 1.45);
+      opacity: var(--opacity);
+      background: linear-gradient(145deg, #e978a0 0%, #d94f80 55%, #b93668 100%);
+      border-radius: 85% 12% 75% 18%;
+      transform: rotate(35deg);
+      animation: fall var(--duration) var(--delay) linear infinite;
+      filter: drop-shadow(0 5px 8px rgba(175, 96, 131, 0.28));
+    }
+
+    @keyframes fall {
+      0% { translate: 0 -12vh; rotate: 0deg; }
+      50% { translate: var(--drift) 52vh; rotate: 180deg; }
+      100% { translate: calc(var(--drift) * -0.4) 112vh; rotate: 360deg; }
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, calc(100% - 48px));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding-top: 42px;
+    }
+
+    header {
+      height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #d99bad40;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      text-decoration: none;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      letter-spacing: .02em;
+    }
+    .brand-mark { color: var(--pink-deep); font-size: 25px; }
+
+    nav { display: flex; align-items: center; gap: 34px; }
+    nav a {
+      color: #65525d;
+      font-size: 13px;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    nav a:hover { color: var(--pink-deep); }
+
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 48px;
+      padding: 54px 0 70px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: #a65d78;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 27px; height: 1px; background: #d97998; }
+
+    h1 {
+      max-width: 580px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 5.6vw, 74px);
+      font-weight: 400;
+      letter-spacing: -.055em;
+      line-height: .99;
+      text-align: bottom;
+    }
+    h1 em { color: var(--pink-deep); font-weight: 400; }
+
+    .thought-title {
+      margin: 0 auto;
+      color: #a33d67;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(36px, 5vw, 76px);
+      font-weight: 700;
+      letter-spacing: -.05em;
+      line-height: .95;
+      text-align: right;
+      text-transform: none;
+    }
+
+    .love-letter {
+      position: relative;
+      isolation: isolate;
+      width: min(100%, 900px);
+      margin: 42px auto 30px;
+      padding: clamp(30px, 6vw, 52px);
+      overflow: hidden;
+      transform: rotate(-1deg);
+      border: 1px solid #8a542f;
+      background-image: url("C:\\Users\\octan\\OneDrive\\Desktop\\Birthday Code\\images.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: inset 0 0 24px 8px #633b2459, 0 18px 42px #75435525;
+      color: #493022;
+      font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    }
+    .love-letter::after {
+      position: absolute;
+      z-index: -1;
+      inset: 12px;
+      border: 1px solid #805b3b4d;
+      content: "";
+      pointer-events: none;
+    }
+    .letter-greeting { margin: 0 0 18px; font-size: 19px; font-style: italic; }
+    .letter-message { margin: 0; font-size: clamp(16px, 2.5vw, 19px); line-height: 1.8; }
+    .letter-signature { margin: 22px 0 0; text-align: right; font-size: 18px; font-style: italic; }
+
+    .intro {
+      max-width: 410px;
+      margin: 24px 0 30px;
+      color: #786873;
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .actions { display: flex; align-items: center; gap: 20px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 23px;
+      border: 1px solid var(--pink-deep);
+      border-radius: 999px;
+      background: var(--pink-deep);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-decoration: none;
+      box-shadow: 0 10px 24px #d9799833;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 13px 28px #d9799845; }
+    .text-link { color: #705b66; font-size: 12px; text-decoration: none; }
+    .text-link span { margin-left: 5px; color: var(--pink-deep); }
+
+    .art-wrap { position: relative; display: grid; place-items: center; min-height: 490px; }
+    .halo {
+      position: absolute;
+      width: min(100%, 450px);
+      aspect-ratio: 1;
+      border: 1px solid #d9799838;
+      border-radius: 50%;
+    }
+    .halo::before, .halo::after {
+      content: "";
+      position: absolute;
+      border: 1px solid #d979982b;
+      border-radius: 50%;
+      inset: 22px;
+    }
+    .halo::after { inset: 48px; }
+
+    .flower-card {
+      position: relative;
+      width: min(77%, 330px);
+      aspect-ratio: .78;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 8px solid #ffffffc9;
+      border-radius: 48% 48% 12px 12px;
+      background: radial-gradient(ellipse at 50% 40%, #fffafd 0%, #f9dbe5 53%, #edb8ca 100%);
+      box-shadow: 0 28px 75px #a85e7624;
+    }
+    .flower-card::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid #ffffffa8;
+      border-radius: inherit;
+    }
+    .flower {
+      position: relative;
+      width: 165px;
+      height: 165px;
+      filter: drop-shadow(0 12px 16px #8a45632b);
+      animation: sway 5s ease-in-out infinite;
+    }
+    .flower i {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 54px; height: 82px;
+      transform-origin: 50% 100%;
+      border-radius: 70% 70% 42% 42%;
+      background: linear-gradient(135deg, #fff9fc, #e99ab4);
+      border: 1px solid #ffffffa8;
+    }
+    .flower i:nth-child(1) { transform: translate(-50%, -100%) rotate(0deg); }
+    .flower i:nth-child(2) { transform: translate(-50%, -100%) rotate(60deg); }
+    .flower i:nth-child(3) { transform: translate(-50%, -100%) rotate(120deg); }
+    .flower i:nth-child(4) { transform: translate(-50%, -100%) rotate(180deg); }
+    .flower i:nth-child(5) { transform: translate(-50%, -100%) rotate(240deg); }
+    .flower i:nth-child(6) { transform: translate(-50%, -100%) rotate(300deg); }
+    .flower b {
+      position: absolute;
+      z-index: 2;
+      top: 50%; left: 50%;
+      width: 25px; height: 25px;
+      transform: translate(-50%, -50%);
+      border: 4px solid #fff4d7;
+      border-radius: 50%;
+      background: #d99478;
+    }
+    @keyframes sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+
+    .caption {
+      position: absolute;
+      right: -4px;
+      bottom: 50px;
+      padding: 15px 19px;
+      border: 1px solid #ffffffc7;
+      border-radius: 12px;
+      background: #fffaf2dc;
+      box-shadow: 0 12px 30px #75435514;
+      color: #705b66;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0 24px;
+      border-top: 1px solid #d99bad40;
+      color: #9b8791;
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 760px) {
+      .page { width: min(100% - 36px, 560px); }
+      header { height: 74px; }
+      nav { gap: 16px; }
+      nav a { font-size: 11px; }
+      nav a:nth-child(2) { display: none; }
+      main { grid-template-columns: 1fr; gap: 10px; padding: 62px 0 42px; }
+      .intro { margin: 20px 0 25px; }
+      .art-wrap { min-height: 390px; }
+      .halo { width: min(88%, 370px); }
+      .flower-card { width: min(66%, 280px); }
+      .caption { right: 2px; bottom: 28px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+    }
+
+    body {
+      display: block;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 32px 20px 50px;
+      background: linear-gradient(145deg, #fff9fb 0%, #fff0f5 52%, #fce5ed 100%);
+    }
+    .petal-field { z-index: 0; }
+    .screen-title {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      margin: 0 auto 20px;
+      color: #a33d67;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .page-link {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateX(-50%);
+      padding: 12px 22px;
+      border: 1px solid rgba(163, 61, 103, 0.4);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      color: #7d2d4d;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      box-shadow: 0 10px 24px rgba(143, 47, 86, 0.18);
+      backdrop-filter: blur(6px);
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .page-arrow {
+      display: inline-block;
+      font-size: 15px;
+      line-height: 1;
+      transform: translateY(-1px);
+    }
+    .page-link:hover {
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 12px 28px rgba(143, 47, 86, 0.22);
+      transform: translateX(-50%) translateY(-1px);
+    }
+
+    .affection-card {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      width: min(100%, 720px);
+      margin: 20px auto 40px;
+      padding: clamp(30px, 7vw, 64px);
+      border: 1px solid #ffffffd9;
+      border-radius: 24px;
+      background: linear-gradient(145deg, #fffdfdF2, #fff5f8ee);
+      box-shadow: 0 24px 70px #9f45651c, inset 0 0 0 8px #fff8fa;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+    .affection-card::before {
+      content: "♡";
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 20px;
+      border: 1px solid #e8a9bc;
+      border-radius: 50%;
+      color: #c65e82;
+      font-size: 25px;
+    }
+    .affection-kicker {
+      margin: 0 0 12px;
+      color: #a65d78;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .affection-card h2 {
+      margin: 0 0 24px;
+      color: #754056;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 5vw, 44px);
+      font-weight: 400;
+    }
+    .affection-card p:not(.affection-kicker):not(.affection-signoff):not(.affection-closing) {
+      max-width: 560px;
+      margin: 0 auto 16px;
+      color: #65525d;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(17px, 2.5vw, 20px);
+      line-height: 1.85;
+    }
+    .affection-signoff {
+      margin: 28px 0 0;
+      color: #a33d67;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      font-style: italic;
+    }
+    .affection-closing {
+      display: block;
+      width: min(100%, 520px);
+      margin: 24px auto 0;
+      color: #65525d;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(17px, 2.5vw, 20px);
+      line-height: 1.85;
+      text-align: center;
+    }
+    @media (max-width: 520px) {
+      body { padding: 32px 16px 30px; }
+      .screen-title { font-size: clamp(25px, 8vw, 36px); }
+      .affection-card { margin-top: 12px; border-radius: 18px; }
+    }
+
+  </style>
+</head>
+<body>
+  <h1 class="screen-title">Things I Want To Say</h1>
+  <a class="page-link" href="Untitled-5.html">Give it a listen <span class="page-arrow" aria-hidden="true">→</span></a>
+  <div class="petal-field" aria-hidden="true">
+    <span class="petal" style="--left: 5%; --size: 16px; --opacity: .9; --duration: 9s; --delay: -2s; --drift: 35px;"></span>
+    <span class="petal" style="--left: 13%; --size: 22px; --opacity: .75; --duration: 12s; --delay: -8s; --drift: -28px;"></span>
+    <span class="petal" style="--left: 22%; --size: 14px; --opacity: .85; --duration: 10s; --delay: -5s; --drift: 42px;"></span>
+    <span class="petal" style="--left: 31%; --size: 19px; --opacity: .8; --duration: 13s; --delay: -10s; --drift: -36px;"></span>
+    <span class="petal" style="--left: 40%; --size: 15px; --opacity: .9; --duration: 11s; --delay: -3s; --drift: 24px;"></span>
+    <span class="petal" style="--left: 49%; --size: 23px; --opacity: .72; --duration: 14s; --delay: -11s; --drift: -45px;"></span>
+    <span class="petal" style="--left: 58%; --size: 17px; --opacity: .86; --duration: 10s; --delay: -6s; --drift: 31px;"></span>
+    <span class="petal" style="--left: 67%; --size: 21px; --opacity: .78; --duration: 12s; --delay: -9s; --drift: -25px;"></span>
+    <span class="petal" style="--left: 76%; --size: 14px; --opacity: .9; --duration: 9s; --delay: -4s; --drift: 38px;"></span>
+    <span class="petal" style="--left: 85%; --size: 20px; --opacity: .82; --duration: 13s; --delay: -7s; --drift: -34px;"></span>
+    <span class="petal" style="--left: 94%; --size: 16px; --opacity: .88; --duration: 11s; --delay: -1s; --drift: 29px;"></span>
+  </div>
+  <main class="affection-card">
+    <p class="affection-kicker">How we liking it so far?</p>
+    <h2>Mere Pyara Jeha Bacha,</h2>
+    <p>As good as everyone says i am with words, you Mrs. Ashma Manhas have made this man speechless more than anyone has ever came close to and that says a thousand words. Ive found love in you so pure i didnt think there was such a thing, and well don't intend to find anymore, i have my human, my better half, my lil ray of sunshine, mera bacha, mera putt, mere sohneo, mere jaan, mere laal tamaatar and mere choti jahe nashedan and there isnt anything more i could've asked for than this.</p>
+    <p>I’m grateful for every moment we share, and I hope today reminds you just how special you are to me and to everyone around you, just how much you mean to me if not others. Ik we have cried on our birthdays but promise me one thing, not this one, i wanna see a big smile today, a big smile expressing just how much we're loved by the people around us. Belive me this is the last birthday we have before i am there planing everything myself (aage mere bache nu ena kam hunda hai).</p>
+    <p class="affection-closing">Im sorryyy i couldnt make it this one special in any way, i had thought about a lot of stuff but it was gonna take more time than i had anticipated but belive me when i say this shall be the last one we're not there to make it the most magical one from now till our small lil time.</p>
+    <p class="affection-signoff">With all i have to offer ♡</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>A little hello</title>
+	<style>
+		* { box-sizing: border-box; }
+		body {
+			min-height: 100vh;
+			margin: 0;
+			display: grid;
+			place-items: center;
+			overflow: hidden;
+			color: #773c55;
+			background: linear-gradient(145deg, #fff7f9, #f9dce7 58%, #f5c5d8);
+			font-family: Georgia, 'Times New Roman', serif;
+		}
+		.petal {
+			position: fixed;
+			top: -3rem;
+			color: #d982a2;
+			font-size: 2.4rem;
+			opacity: .95;
+			filter: drop-shadow(0 0 10px rgba(184,79,120,.28));
+			pointer-events: none;
+			animation: fall 13s linear infinite;
+		}
+		.petal:nth-child(1) { left: 12%; animation-delay: -3s; }
+		.petal:nth-child(2) { left: 35%; animation-duration: 17s; animation-delay: -11s; }
+		.petal:nth-child(3) { left: 68%; animation-duration: 15s; animation-delay: -6s; }
+		.petal:nth-child(4) { left: 88%; animation-duration: 19s; animation-delay: -14s; }
+		@keyframes fall { to { transform: translate(35px, 110vh) rotate(360deg); } }
+		main {
+			width: min(90%, 650px);
+			padding: clamp(3rem, 9vw, 6rem) 1.5rem;
+			text-align: center;
+			border: 1px solid rgba(255,255,255,.9);
+			border-radius: 32px;
+			background: rgba(255,250,252,.74);
+			box-shadow: 0 24px 70px rgba(155,75,109,.16);
+			backdrop-filter: blur(8px);
+		}
+		.flower { margin: 0 0 1rem; font-size: 2rem; }
+		h1 {
+			margin: 0;
+			color: #b84f78;
+			font-size: clamp(2.6rem, 9vw, 5.2rem);
+			font-weight: 500;
+			letter-spacing: -.045em;
+			line-height: 1.08;
+		}
+		.divider { width: 48px; height: 1px; margin: 1.8rem auto; background: #dfa2b7; }
+		.subtitle {
+			margin: 0;
+			color: #956477;
+			font-family: 'Trebuchet MS', sans-serif;
+			font-size: clamp(1rem, 3vw, 1.2rem);
+			letter-spacing: .06em;
+		}
+		.note { margin: 1rem 0 0; color: #a67989; font-style: italic; }
+		.next-button {
+			display: inline-block;
+			margin-top: 1.5rem;
+			padding: .8rem 1.4rem;
+			border: 1px solid #dfa2b7;
+			border-radius: 999px;
+			background: #fff7f9;
+			color: #b84f78;
+			font-family: 'Trebuchet MS', sans-serif;
+			text-decoration: none;
+			transition: background .2s ease, transform .2s ease;
+		}
+		.next-button:hover { background: #f9dce7; transform: translateY(-2px); }
+		.next-button:focus-visible { outline: 2px solid #b84f78; outline-offset: 3px; }
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+			.next-button { transition: none; }
+		}
+	</style>
+</head>
+<body>
+	<span class="petal" aria-hidden="true">✿</span>
+	<span class="petal" aria-hidden="true">✧</span>
+	<span class="petal" aria-hidden="true">✿</span>
+	<span class="petal" aria-hidden="true">✧</span>
+	<main>
+		<p class="flower" aria-hidden="true">🌸</p>
+		<h1>So Helloooo Sohneo,<br></h1>
+		<div class="divider" aria-hidden="true"></div>
+		<p class="subtitle">A little smth i had planned</p>
+		<p class="note">♡</p>
+		<a class="next-button" href="Untitled-2.html">Aajo Ji Aajo →</a>
+	</main>
+</body>
+</html>
